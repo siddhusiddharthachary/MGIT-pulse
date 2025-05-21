@@ -1,0 +1,59 @@
+body{
+    background: #000;
+    margin: 0;padding: 0;
+    color: #fff;
+}
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.leftBar{
+    border: #fff 1px solid;
+    background: #000;
+    width: 20vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.centre{
+    border: #fff 1px solid;
+    background: #000;
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.rightBar{
+    border: #fff 1px solid;
+    background: #000;
+    width: 20vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.image-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.image-button img {
+    width: 75px; /* Adjust based on your image size */
+    height: auto;
+    display: block;
+}
+
+.image-button:hover {
+    transform: translateX(-50%) scale(1.05);
+}
