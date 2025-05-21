@@ -11,6 +11,8 @@ body {
     align-items: center;
 }
 
+
+
 .leftBar,
 .rightBar {
     border: #fff 1px solid;
@@ -47,8 +49,32 @@ body {
     width: 60vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+.logo{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: -530px;
+}
+.logo img#logo {
+    width: 75px;
+}
+
+.logo img#logo2 {
+    width: 150px;
+}
+.logo label{
+    margin-left: 15px;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #fff;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .post-button {
