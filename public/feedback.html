@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous Feedback</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-container {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #444;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #4285f4;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            resize: none;
+            margin-top: 15px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #306cd9;
+        }
+
+        .thank-you {
+            display: none;
+            color: lightgreen;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="feedback-container">
+    <h2>Send Your Feedback</h2>
+    <form id="feedbackForm">
+        <textarea id="feedbackMessage" placeholder="Leave your message here..." required></textarea>
+        <button type="submit">Send Feedback</button>
+        <div class="thank-you" id="thankYou">Thanks for sharing your thoughts! 💬</div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('feedbackForm');
+    const message = document.getElementById('feedbackMessage');
+    const thankYou = document.getElementById('thankYou');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Simulate "sending to the founder"
+        // You can replace this part with fetch to a real server endpoint or use mailto:
+        console.log("Message sent to the founder:", message.value);
+
+        message.value = '';
+        thankYou.style.display = 'block';
+        setTimeout(() => {
+            thankYou.style.display = 'none';
+        }, 4000);
+    });
+</script>
+
+</body>
+</html>

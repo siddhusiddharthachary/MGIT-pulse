@@ -1,0 +1,36 @@
+body {
+    background-color: antiquewhite;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+}
+
+.navbar ul button {
+    height:50px;
+    width: 250px;
+    background-color: transparent;
+    color: white;
+    border: 0;
+}
+
+.navbar ul button:hover{
+    background-color: yellowgreen;
+}
+
+.title{
+    color: rgb(255, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

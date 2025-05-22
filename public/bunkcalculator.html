@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunk Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+        }
+        .calculator-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background: #000;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px white;
+        }
+        h1 {
+            text-align: center;
+            color: #4285f4;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #4285f4;
+            color: black;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #fff;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .warning {
+            background-color: #000;
+            color: #4285f4;
+            border: 1px solid #000;
+        }
+        .safe {
+            background-color: #000;
+            color: #4285f4;
+            border: 1px solid #000;
+        }
+        .attendance-bar {
+            height: 20px;
+            background-color: #fff
+            ;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .attendance-progress {
+            height: 100%;
+            background-color: #4285f4;
+            width: 0%;
+            transition: width 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Bunk Calculator</h1>
+        <div class="input-group">
+            <label for="attended">Classes Attended:</label>
+            <input type="number" id="attended" min="0">
+        </div>
+        <div class="input-group">
+            <label for="total">Total Classes Held:</label>
+            <input type="number" id="total" min="0">
+        </div>
+        <button onclick="calculateAttendance()">Calculate</button>
+        
+        <div id="result" class="result"></div>
+        
+        <div class="attendance-bar">
+            <div id="attendance-progress" class="attendance-progress"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateAttendance() {
+    const attended = parseInt(document.getElementById('attended').value);
+    const total = parseInt(document.getElementById('total').value);
+    const resultDiv = document.getElementById('result');
+    const progressBar = document.getElementById('attendance-progress');
+    
+    // Input validation
+    if (isNaN(attended) || isNaN(total) || total === 0 || attended > total) {
+        alert("Please enter valid numbers (attended ≤ total)");
+        return;
+    }
+    
+    const currentAttendance = (attended / total) * 100;
+    progressBar.style.width = Math.min(currentAttendance, 100) + '%';
+    
+    if (currentAttendance < 75) {
+        // Calculate exact classes needed to reach 75%
+        const needed = Math.ceil((0.75 * total - attended) / 0.25);
+        const newTotal = total + needed;
+        const newAttendance = (attended + needed) / newTotal * 100;
+        
+        resultDiv.innerHTML = `
+            <p>Your current attendance: <strong>${currentAttendance.toFixed(2)}%</strong></p>
+            <p class="warning">You need to attend <strong>${needed}</strong> more classes to reach 75% attendance.</p>
+           
+        `;
+        resultDiv.className = "result warning";
+    } else {
+        // Calculate exact classes that can be bunked while maintaining ≥75%
+        const canBunk = Math.floor((attended - 0.75 * total) / 0.75);
+        const newTotal = total + canBunk;
+        const newAttendance = attended / newTotal * 100;
+        
+        resultDiv.innerHTML = `
+            <p>Your current attendance: <strong>${currentAttendance.toFixed(2)}%</strong></p>
+            <p class="safe">You can bunk <strong>${canBunk}</strong> classes while maintaining ≥75% attendance.</p>
+            
+        `;
+        resultDiv.className = "result safe";
+    }
+    
+    resultDiv.style.display = "block";
+}
+    </script>
+</body>
+</html>
